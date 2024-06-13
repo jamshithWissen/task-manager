@@ -36,7 +36,7 @@ function App() {
           currentTask={currentTask}
           handleInputSubmit={handleInputSubmit}
         />
-        <TasksGrid />
+        <TasksGrid tasks={tasks} />
       </div>
     </>
   );

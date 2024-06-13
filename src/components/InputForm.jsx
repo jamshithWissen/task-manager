@@ -33,7 +33,7 @@ const InputForm = ({ handleInputSubmit, currentTask }) => {
             className=""
             id="task"
             placeholder="Enter Task"
-            name="TaskName"
+            name="task"
             value={formData.task}
             required
             onChange={updateForm}
