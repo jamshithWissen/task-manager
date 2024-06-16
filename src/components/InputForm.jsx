@@ -1,11 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const InputForm = ({ handleInputSubmit, currentTask }) => {
   const initialFormData = {
-    task: "",
-    priority: "",
+    name: "",
+    priority: "high",
   };
   const [formData, setFormData] = useState(currentTask || initialFormData);
+
+  useEffect(() => {
+    setFormData(currentTask);
+  }, [currentTask]);
 
   const updateForm = (e) => {
     setFormData((currentFormData) => ({
@@ -22,7 +26,7 @@ const InputForm = ({ handleInputSubmit, currentTask }) => {
 
   return (
     <div className="inputContainer">
-      <form>
+      <form onSubmit={handleFormSubmit}>
         <h2>Add task</h2>
         <div className="formItem">
           <label htmlFor="task" className="">
@@ -33,8 +37,8 @@ const InputForm = ({ handleInputSubmit, currentTask }) => {
             className=""
             id="task"
             placeholder="Enter Task"
-            name="task"
-            value={formData.task}
+            name="name"
+            value={formData.name}
             required
             onChange={updateForm}
           />
@@ -45,16 +49,19 @@ const InputForm = ({ handleInputSubmit, currentTask }) => {
             className="select"
             name="priority"
             id="priority"
+            value={formData.priority}
             onChange={updateForm}
           >
-            <option value="high">high</option>
+            <option value="high">High</option>
             <option value="medium">Medium</option>
             <option value="low">Low</option>
           </select>
         </div>
-        <button className="submit" onClick={handleFormSubmit}>
-          Submit
-        </button>
+        <div className="footer">
+          <button className="submit" type="submit">
+            Submit
+          </button>
+        </div>
       </form>
     </div>
   );

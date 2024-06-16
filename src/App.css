@@ -25,7 +25,15 @@ select,[type="text"] {
   border-radius: 5px;
   border: 1px solid #ccc;
   font-size: 16px;
-  width:10rem;
+  width:20rem;
+}
+
+.submit {
+  text-decoration: none;
+  padding: 10px 20px;
+  margin: 4px 2px;
+  cursor: pointer;
+
 }
 
 .formItem {
@@ -40,3 +48,27 @@ select,[type="text"] {
   }
 }
 
+.footer {
+  display: flex;
+  flex-direction: row-reverse;
+
+}
+
+.taskContainer {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.taskItem {
+  display: flex;
+  gap: 20px;
+}
+.taskActions {
+  display: flex;
+  gap: 20px;
+}
+
+.strike {
+  text-decoration: line-through;
+}

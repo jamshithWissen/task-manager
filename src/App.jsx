@@ -28,6 +28,28 @@ function App() {
     setTasks(newTasks);
   };
 
+  const handleComplete = (e, id) => {
+    const newList = tasks.map((item) => {
+      if (item?.id === id) {
+        item.completed = !item.completed;
+      }
+      return item;
+    });
+    setTasks(newList);
+  };
+
+  const handleDelete = (e, id) => {
+    const newList = tasks.filter((item) => item.id !== id);
+    setTasks(newList);
+  };
+
+  const handleEdit = (e, id) => {
+    const task = tasks.find((item) => item.id === id);
+    setCurrentTask(task);
+  };
+
+  console.log("currentTask", currentTask);
+
   return (
     <>
       <div className="todoapp">
@@ -36,7 +58,12 @@ function App() {
           currentTask={currentTask}
           handleInputSubmit={handleInputSubmit}
         />
-        <TasksGrid tasks={tasks} />
+        <TasksGrid
+          tasks={tasks}
+          handleComplete={handleComplete}
+          handleEdit={handleEdit}
+          handleDelete={handleDelete}
+        />
       </div>
     </>
   );
