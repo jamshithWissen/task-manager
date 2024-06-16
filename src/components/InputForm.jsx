@@ -27,7 +27,9 @@ const InputForm = ({ handleInputSubmit, currentTask }) => {
   return (
     <div className="inputContainer">
       <form onSubmit={handleFormSubmit}>
-        <h2>Add task</h2>
+        <h2>
+          {currentTask ? `Edit Task : ${currentTask?.name}` : "Add a new task"}
+        </h2>
         <div className="formItem">
           <label htmlFor="task" className="">
             Task :
