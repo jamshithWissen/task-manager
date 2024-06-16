@@ -5,10 +5,10 @@ const InputForm = ({ handleInputSubmit, currentTask }) => {
     name: "",
     priority: "high",
   };
-  const [formData, setFormData] = useState(currentTask || initialFormData);
+  const [formData, setFormData] = useState(initialFormData);
 
   useEffect(() => {
-    setFormData(currentTask);
+    currentTask && setFormData(currentTask);
   }, [currentTask]);
 
   const updateForm = (e) => {

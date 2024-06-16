@@ -5,7 +5,7 @@ import TasksGrid from "./components/TasksGrid";
 
 function App() {
   const [tasks, setTasks] = useState([]);
-  const [currentTask, setCurrentTask] = useState("");
+  const [currentTask, setCurrentTask] = useState(null);
 
   const handleInputSubmit = (formData) => {
     let newTasks = [];
@@ -26,6 +26,7 @@ function App() {
       newTasks = tasks.concat(newtask);
     }
     setTasks(newTasks);
+    setCurrentTask(null);
   };
 
   const handleComplete = (e, id) => {
@@ -58,12 +59,14 @@ function App() {
           currentTask={currentTask}
           handleInputSubmit={handleInputSubmit}
         />
-        <TasksGrid
-          tasks={tasks}
-          handleComplete={handleComplete}
-          handleEdit={handleEdit}
-          handleDelete={handleDelete}
-        />
+        {tasks.length > 0 && (
+          <TasksGrid
+            tasks={tasks}
+            handleComplete={handleComplete}
+            handleEdit={handleEdit}
+            handleDelete={handleDelete}
+          />
+        )}
       </div>
     </>
   );
