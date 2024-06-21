@@ -25,7 +25,16 @@ select,[type="text"] {
   border-radius: 5px;
   border: 1px solid #ccc;
   font-size: 16px;
-  width:10rem;
+  width:20rem;
+  outline: none;
+}
+
+.submit {
+  text-decoration: none;
+  padding: 10px 20px;
+  margin: 4px 2px;
+  cursor: pointer;
+
 }
 
 .formItem {
@@ -40,3 +49,43 @@ select,[type="text"] {
   }
 }
 
+.footer {
+  display: flex;
+  flex-direction: row-reverse;
+
+}
+
+.taskContainer {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.taskItem {
+  display: flex;
+  gap: 20px;
+}
+.taskActions {
+  display: flex;
+  gap: 20px;
+}
+
+.strike {
+  text-decoration: line-through;
+}
+
+button {
+  background-color: hsl(213, 73%, 50%);
+  border-radius: 0.25rem;
+  cursor: pointer;
+  padding: 0.75rem 1.25rem;
+  border: none;
+  color: white;
+  text-decoration: none;
+  margin: 5px 4px;
+  cursor: pointer;  
+}
+
+button:focus {
+  outline: none;
+}

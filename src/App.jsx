@@ -1,11 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import InputForm from "./components/InputForm";
 import TasksGrid from "./components/TasksGrid";
 
 function App() {
-  const [tasks, setTasks] = useState([]);
-  const [currentTask, setCurrentTask] = useState("");
+  const initialTasks = JSON.parse(window.localStorage.getItem("tasks"));
+  const [tasks, setTasks] = useState(initialTasks || []);
+  const [currentTask, setCurrentTask] = useState(null);
+
+  useEffect(() => {
+    window.localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
 
   const handleInputSubmit = (formData) => {
     let newTasks = [];
@@ -26,7 +31,30 @@ function App() {
       newTasks = tasks.concat(newtask);
     }
     setTasks(newTasks);
+    setCurrentTask(null);
   };
+
+  const handleComplete = (e, id) => {
+    const newList = tasks.map((item) => {
+      if (item?.id === id) {
+        item.completed = !item.completed;
+      }
+      return item;
+    });
+    setTasks(newList);
+  };
+
+  const handleDelete = (e, id) => {
+    const newList = tasks.filter((item) => item.id !== id);
+    setTasks(newList);
+  };
+
+  const handleEdit = (e, id) => {
+    const task = tasks.find((item) => item.id === id);
+    setCurrentTask(task);
+  };
+
+  console.log("currentTask", currentTask);
 
   return (
     <>
@@ -36,7 +64,14 @@ function App() {
           currentTask={currentTask}
           handleInputSubmit={handleInputSubmit}
         />
-        <TasksGrid />
+        {tasks.length > 0 && (
+          <TasksGrid
+            tasks={tasks}
+            handleComplete={handleComplete}
+            handleEdit={handleEdit}
+            handleDelete={handleDelete}
+          />
+        )}
       </div>
     </>
   );
