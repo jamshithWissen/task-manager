@@ -1,11 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import InputForm from "./components/InputForm";
 import TasksGrid from "./components/TasksGrid";
 
 function App() {
-  const [tasks, setTasks] = useState([]);
+  const initialTasks = JSON.parse(window.localStorage.getItem("tasks"));
+  const [tasks, setTasks] = useState(initialTasks || []);
   const [currentTask, setCurrentTask] = useState(null);
+
+  useEffect(() => {
+    window.localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
 
   const handleInputSubmit = (formData) => {
     let newTasks = [];
