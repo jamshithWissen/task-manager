@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 const InputForm = ({ handleInputSubmit, currentTask }) => {
   const initialFormData = {
-    name: "",
-    priority: "high",
+    name: '',
+    priority: 'high',
   };
   const [formData, setFormData] = useState(initialFormData);
 
@@ -28,7 +28,7 @@ const InputForm = ({ handleInputSubmit, currentTask }) => {
     <div className="inputContainer">
       <form onSubmit={handleFormSubmit}>
         <h2>
-          {currentTask ? `Edit Task : ${currentTask?.name}` : "Add a new task"}
+          {currentTask ? `Edit Task : ${currentTask?.name}` : 'Add a new task'}
         </h2>
         <div className="formItem">
           <label htmlFor="task" className="">
