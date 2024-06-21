@@ -11,21 +11,22 @@
 
 .inputContainer {
   margin: 0 auto;
-  box-shadow:
-  0 2px 4px 0 rgb(0 0 0 / 20%),
-  0 2.5rem 5rem 0 rgb(0 0 0 / 10%);
+  box-shadow: 0 2px 4px 0 rgb(0 0 0 / 20%), 0 2.5rem 5rem 0 rgb(0 0 0 / 10%);
   margin: 2rem 0 4rem 0;
   padding: 1rem;
   position: relative;
-
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
 }
 
-select,[type="text"] {
+select,
+[type='text'] {
   padding: 5px;
   border-radius: 5px;
   border: 1px solid #ccc;
   font-size: 16px;
-  width:20rem;
+  width: 20rem;
   outline: none;
 }
 
@@ -34,7 +35,6 @@ select,[type="text"] {
   padding: 10px 20px;
   margin: 4px 2px;
   cursor: pointer;
-
 }
 
 .formItem {
@@ -52,7 +52,6 @@ select,[type="text"] {
 .footer {
   display: flex;
   flex-direction: row-reverse;
-
 }
 
 .taskContainer {
@@ -83,9 +82,78 @@ button {
   color: white;
   text-decoration: none;
   margin: 5px 4px;
-  cursor: pointer;  
+  cursor: pointer;
 }
 
 button:focus {
   outline: none;
+}
+
+.ag-header-cell-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ag-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-center {
+  justify-content: center !important;
+}
+
+.cell-center {
+  justify-content: center !important;
+}
+
+.taskButton {
+  padding: 5px 10px;
+  font-size: 14px;
+  cursor: pointer;
+}
+.inputContainer {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal button {
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.modal button:first-of-type {
+  background-color: red;
+  color: white;
+}
+
+.modal button:last-of-type {
+  background-color: green;
+  color: white;
 }
