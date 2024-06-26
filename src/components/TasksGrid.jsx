@@ -8,6 +8,8 @@ const TasksGrid = ({ tasks, handleComplete, handleDelete, handleEdit }) => {
   const [gridApi, setGridApi] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedTaskId, setSelectedTaskId] = useState(null);
+  const [showOverlay, setShowOverlay] = useState(false);
+  const [overlayMessage, setOverlayMessage] = useState('');
 
   const columnDefs = useMemo(
     () => [
@@ -38,6 +40,11 @@ const TasksGrid = ({ tasks, handleComplete, handleDelete, handleEdit }) => {
         width: 120,
         headerClass: 'header-center',
         cellClass: 'cell-center',
+        comparator: (valueA, valueB) => {
+          const priorityMap = { low: 1, medium: 2, high: 3 };
+          return priorityMap[valueA] - priorityMap[valueB];
+        },
+        sort: 'asc',
       },
       {
         headerName: 'Actions',
@@ -83,9 +90,14 @@ const TasksGrid = ({ tasks, handleComplete, handleDelete, handleEdit }) => {
   const confirmDelete = () => {
     handleDelete(null, selectedTaskId);
     closeModal();
-    if (gridApi) {
-      gridApi.refreshCells(); // Refresh the grid
-    }
+    setShowOverlay(true);
+    setOverlayMessage('Task deleted successfully');
+    setTimeout(() => {
+      setShowOverlay(false);
+      if (gridApi) {
+        gridApi.refreshCells();
+      }
+    }, 1000);
   };
 
   // Filter out invalid tasks
@@ -100,7 +112,14 @@ const TasksGrid = ({ tasks, handleComplete, handleDelete, handleEdit }) => {
         rowData={validTasks}
         columnDefs={columnDefs}
         onGridReady={onGridReady}
+        sortable={true}
       />
+      {showOverlay && (
+        <div className="overlay">
+          <div className="loader"></div>
+          <p>{overlayMessage}</p>
+        </div>
+      )}
       <Modal
         isOpen={isModalOpen}
         onRequestClose={closeModal}
