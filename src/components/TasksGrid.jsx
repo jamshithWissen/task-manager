@@ -30,16 +30,16 @@ const TasksGrid = ({ tasks, handleComplete, handleDelete, handleEdit }) => {
         cellClass: "cell-center",
       },
       {
-        headerName: "Name",
+        headerName: "Task",
         field: "name",
-        width: 120,
+        width: 300,
         headerClass: "header-center",
         cellClass: "cell-center",
       },
       {
         headerName: "Priority",
         field: "priority",
-        width: 120,
+        width: 150,
         headerClass: "header-center",
         cellClass: "cell-center",
         comparator: (valueA, valueB) => {
@@ -67,7 +67,7 @@ const TasksGrid = ({ tasks, handleComplete, handleDelete, handleEdit }) => {
             </button>
           </div>
         ),
-        width: 150,
+        width: 200,
         headerClass: "header-center",
         cellClass: "cell-center",
       },
@@ -108,7 +108,7 @@ const TasksGrid = ({ tasks, handleComplete, handleDelete, handleEdit }) => {
   );
 
   return (
-    <div className="ag-theme-quartz" style={{ height: 400, width: "100%" }}>
+    <div className="ag-theme-quartz taskGrid">
       <h2>My Tasks</h2>
       <AgGridReact
         rowData={validTasks}
