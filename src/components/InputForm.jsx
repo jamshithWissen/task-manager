@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 const InputForm = ({ handleInputSubmit, currentTask }) => {
   const initialFormData = {
-    name: "",
-    priority: "High",
+    name: '',
+    priority: 'high',
   };
   const [formData, setFormData] = useState(initialFormData);
 
@@ -28,11 +28,11 @@ const InputForm = ({ handleInputSubmit, currentTask }) => {
     <div className="inputContainer">
       <form onSubmit={handleFormSubmit}>
         <h2>
-          {currentTask ? `Edit Task : ${currentTask?.name}` : "Add a new task"}
+          {currentTask ? `Edit Task : ${currentTask?.name}` : 'Add a new task'}
         </h2>
         <div className="formItem">
           <label htmlFor="task" className="">
-            Task :
+            Task
           </label>
           <input
             type="text"
@@ -46,7 +46,7 @@ const InputForm = ({ handleInputSubmit, currentTask }) => {
           />
         </div>
         <div className="formItem">
-          <label htmlFor="priority">Priority:</label>
+          <label htmlFor="priority">Priority</label>
           <select
             className="select"
             name="priority"
@@ -54,9 +54,9 @@ const InputForm = ({ handleInputSubmit, currentTask }) => {
             value={formData.priority}
             onChange={updateForm}
           >
-            <option value="High">High</option>
-            <option value="Medium">Medium</option>
-            <option value="Low">Low</option>
+            <option value="high">High</option>
+            <option value="medium">Medium</option>
+            <option value="low">Low</option>
           </select>
         </div>
         <div className="footer">
