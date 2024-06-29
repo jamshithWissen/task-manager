@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import InputForm from "./components/InputForm";
 import TasksGrid from "./components/TasksGrid";
+import "ag-grid-community/styles/ag-grid.css"; 
+import "ag-grid-community/styles/ag-theme-quartz.css";
 
 function App() {
   const initialTasks = JSON.parse(window.localStorage.getItem("tasks"));
