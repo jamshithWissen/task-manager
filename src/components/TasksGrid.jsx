@@ -1,21 +1,21 @@
-import React, { useMemo, useState } from 'react';
-import { AgGridReact } from 'ag-grid-react';
-import Modal from 'react-modal';
+import { useMemo, useState } from "react";
+import { AgGridReact } from "ag-grid-react";
+import Modal from "react-modal";
 
-Modal.setAppElement('#root');
+Modal.setAppElement("#root");
 
 const TasksGrid = ({ tasks, handleComplete, handleDelete, handleEdit }) => {
   const [gridApi, setGridApi] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedTaskId, setSelectedTaskId] = useState(null);
   const [showOverlay, setShowOverlay] = useState(false);
-  const [overlayMessage, setOverlayMessage] = useState('');
+  const [overlayMessage, setOverlayMessage] = useState("");
 
   const columnDefs = useMemo(
     () => [
       {
-        headerName: 'Select',
-        field: 'completed',
+        headerName: "Select",
+        field: "completed",
         cellRenderer: (params) => (
           <input
             type="checkbox"
@@ -24,33 +24,33 @@ const TasksGrid = ({ tasks, handleComplete, handleDelete, handleEdit }) => {
           />
         ),
         width: 100,
-        headerClass: 'header-center',
-        cellClass: 'cell-center',
+        headerClass: "header-center",
+        cellClass: "cell-center",
       },
       {
-        headerName: 'Task',
-        field: 'name',
-        width: 120,
-        headerClass: 'header-center',
-        cellClass: 'cell-center',
+        headerName: "Task",
+        field: "name",
+        width: 168,
+        headerClass: "header-center",
+        cellClass: "cell-center",
       },
       {
-        headerName: 'Priority',
-        field: 'priority',
-        width: 120,
-        headerClass: 'header-center',
-        cellClass: 'cell-center',
+        headerName: "Priority",
+        field: "priority",
+        width: 150,
+        headerClass: "header-center",
+        cellClass: "cell-center",
         comparator: (valueA, valueB) => {
           const priorityMap = { low: 1, medium: 2, high: 3 };
           return priorityMap[valueA] - priorityMap[valueB];
         },
-        sort: 'asc',
+        sort: "asc",
       },
       {
-        headerName: 'Actions',
-        field: 'actions',
+        headerName: "Actions",
+        field: "actions",
         cellRenderer: (params) => (
-          <div style={{ display: 'flex', gap: '5px' }}>
+          <div style={{ display: "flex", gap: "5px" }}>
             <button
               className="taskButton"
               onClick={() => openModal(params.data.id)}
@@ -65,9 +65,9 @@ const TasksGrid = ({ tasks, handleComplete, handleDelete, handleEdit }) => {
             </button>
           </div>
         ),
-        width: 160,
-        headerClass: 'header-center',
-        cellClass: 'cell-center',
+        width: 180,
+        headerClass: "header-center",
+        cellClass: "cell-center",
       },
     ],
     [handleComplete, handleEdit]
@@ -91,7 +91,7 @@ const TasksGrid = ({ tasks, handleComplete, handleDelete, handleEdit }) => {
     handleDelete(null, selectedTaskId);
     closeModal();
     setShowOverlay(true);
-    setOverlayMessage('Task deleted successfully');
+    setOverlayMessage("Task deleted successfully");
     setTimeout(() => {
       setShowOverlay(false);
       if (gridApi) {
@@ -107,9 +107,9 @@ const TasksGrid = ({ tasks, handleComplete, handleDelete, handleEdit }) => {
 
   const getRowStyle = (params) => {
     if (params.node.rowIndex % 2 === 0) {
-      return { background: '#E8F4FF' };
+      return { background: "#E8F4FF" };
     }
-    return { background: '#ffffff' };
+    return { background: "#ffffff" };
   };
 
   return (
@@ -121,8 +121,8 @@ const TasksGrid = ({ tasks, handleComplete, handleDelete, handleEdit }) => {
         onGridReady={onGridReady}
         sortable={true}
         defaultColDef={{
-          headerClass: 'header-center',
-          cellClass: 'cell-center',
+          headerClass: "header-center",
+          cellClass: "cell-center",
         }}
         getRowStyle={getRowStyle}
       />
