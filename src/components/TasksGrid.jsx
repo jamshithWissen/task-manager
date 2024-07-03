@@ -106,10 +106,15 @@ const TasksGrid = ({ tasks, handleComplete, handleDelete, handleEdit }) => {
   );
 
   const getRowStyle = (params) => {
-    if (params.node.rowIndex % 2 === 0) {
-      return { background: "#E8F4FF" };
+    console.log("params", params);
+    const priority = params.data?.priority;
+    if (priority === "medium") {
+      return { background: "#fffec8" };
+    } else if (priority === "high") {
+      return { background: "#FAA0A0" };
+    } else {
+      return { background: "#90EE90" };
     }
-    return { background: "#ffffff" };
   };
 
   return (
